@@ -21,17 +21,5 @@ docker build -t retropie-docker .
 Run the container in privileged daemon mode. Try adding some additional volumes/variables based on some of the ideas from [here] (https://blog.jessfraz.com/post/docker-containers-on-the-desktop/) :
 
 ```
-docker run -d -v /dev/snd:/dev/snd -v /tmp/.X11 \  
-    -unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY \
-    --privileged -t retropie-docker
-```
-
-## Issues
-
-Docker run currently fails with the following error :
-```
-lvl0:    Error creating SDL window!
-    Could not initialize OpenGL / GLES library
-lvl0:   Renderer failed to initialize!
-lvl0:   Window failed to initialize!
+docker run --rm -v /dev/snd:/dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/vchiq:/dev/vchiq -e DISPLAY=unix$DISPLAY --privileged -t retropie-docker
 ```
